@@ -1,0 +1,53 @@
+html, body{
+    padding: 0;
+    margin: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: black;
+    color: green;
+}
+textarea{
+    padding: 0;
+    margin-top: 10px;
+    border: 0;
+    outline: none;
+
+    resize: none;
+    width: 100%;
+    height: 80%;
+
+    background-color: black;
+    color: green;
+}
+
+
+#comando{
+    padding: 0;
+    margin: 0;
+    outline: none;
+    border: none;
+
+    width: 100%;
+    height: 10vh;
+
+    background-color: black;
+    color: green;
+}
+#btn{
+    display: none;
+}
+.div{
+    height: 10vh;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+#ajuda{
+    font-weight: bolder;
+}
+
+::-webkit-scrollbar { 
+    width: 0px;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+    initial-scale=1.0">
+    <script src="../socket.io/socket.io.js"></script>
+    <link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+
+    <title>Socket.io</title>
+</head>
+
+<body class="col">
+    <textarea type="text" readonly="true" id="respostas"></textarea>
+    <form>
+        <a href="#" onclick="document.getElementById('comando').focus();return(false);"></a>
+        <input type="text" id="comando"></input>
+        <button type="submit" id="btn">Executar</button>
+    </form>
+    <div class="footer col row">
+        <div class="col">
+            <p>
+                Ⓒ Copyright Lucas Gulart e Vitor Prestes
+            </p>
+        </div>
+        <div class="col">
+            <a id="ajuda">AJUDA</a>
+        </div>
+    </div>
+    <script>
+        var socket = io();
+        var btn = document.getElementById('btn');
+        btn.addEventListener(
+            'click',
+            function (e) {
+                var comando = document.getElementById('comando').value;
+                socket.emit('comando', comando);
+                //console.log(comando);
+                e.preventDefault();
+                omando = document.getElementById('comando').value='';
+                return false;
+
+            },
+            false
+        );
+
+        socket.on('resposta', function (rsp) {
+            var respos = document.getElementById('respostas');
+            respos.value += '> ' + rsp.cmd + '\n' + rsp.rsp + '\n';
+            
+            respos.scrollTop = respos.scrollHeight;
+        });
+
+        var ajuda = document.getElementById('ajuda');
+        ajuda.addEventListener(
+            'click', function(e){
+                help = 'Alguns dos comandos testados:\n-whoami\n-pwd\n-ls (+local)\n-ifconfig\n'
+                document.getElementById('respostas').value = help;
+            },
+            false
+        );
+    </script>
+</body>
+
+</html>
